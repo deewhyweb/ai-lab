@@ -4,17 +4,6 @@ application:
   name: Sentiment_App
   description: Analyze sentiment of text.
   containers:
-    - name: llamacpp-server
-      containerfile: ./base/Containerfile
-      model-service: true
-      backend:
-        - llama
-      arch:
-        - arm64
-        - amd64
-      ports:
-        - 8001
-      image: quay.io/ai-lab/llamacpp_python:latest
     - name: streamlit-sentiment-app
       contextdir: app
       containerfile: Containerfile
