@@ -1,8 +1,8 @@
 version: v1.0
 application:
   type: language
-  name: Summarizer_App
-  description: Summarize text files in a web frontend.
+  name: Sentiment_App
+  description: Analyze sentiment of text.
   containers:
     - name: llamacpp-server
       contextdir: ../../../model_servers/llamacpp_python
