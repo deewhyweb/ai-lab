@@ -85,7 +85,7 @@ def evaluate_summary(text, response):
                          prediction=response)
     return score
 
-st.title("🔎 Summarizer")
+st.title("🔎 Sentiment analyzer")
 file = st.file_uploader("Upload file",type=[".txt",".pdf"])
 
 llm = ChatOpenAI(base_url=model_service,
@@ -97,17 +97,11 @@ llm = ChatOpenAI(base_url=model_service,
 
 ### prompt example is from  https://python.langchain.com/docs/use_cases/summarization
 refine_template = PromptTemplate.from_template(
-    "Your job is to produce a final summary\n"
-    "We have provided an existing summary up to a certain point: {existing_answer}\n"
-    "We have the opportunity to refine the existing summary"
-    "(only if needed) with some more context below.\n"
+    "Instructions: Analyze the review and determine if it is positive or negative.\n"
     "------------\n"
     "{text}\n"
     "------------\n"
-    "Given the new context, refine the original summary"
-    "If the context isn't useful, return the original summary."
-    "Only use bullet points."
-    "Dont ever go beyond 10 bullet points."
+    "If the review is positive, say:'POSITIVE', otherwise:'NEGATIVE'"
 )
                     
 if file != None:
@@ -125,7 +119,7 @@ if file != None:
             response = llm.invoke(refine_template.format(text=chunk,existing_answer=existing_answer))
             existing_answer = response.content
         else:
-            with st.spinner("Preparing Aggregated Summary"):
+            with st.spinner("Preparing Sentiment analysis"):
                 stream = llm.stream(refine_template.format(text=chunk,existing_answer=existing_answer))
                 response = st.write_stream(stream)
 
