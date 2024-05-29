@@ -5,7 +5,6 @@ application:
   description: Analyze sentiment of text.
   containers:
     - name: llamacpp-server
-      contextdir: ../../../model_servers/llamacpp_python
       containerfile: ./base/Containerfile
       model-service: true
       backend:
