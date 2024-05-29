@@ -16,7 +16,7 @@ application:
       ports:
         - 8001
       image: quay.io/ai-lab/llamacpp_python:latest
-    - name: streamlit-summary-app
+    - name: streamlit-sentiment-app
       contextdir: app
       containerfile: Containerfile
       arch:
