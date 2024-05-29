@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-APP ?= summarizer
+APP ?= sentiment
 PORT ?= 8501
 
 include ../../common/Makefile.common

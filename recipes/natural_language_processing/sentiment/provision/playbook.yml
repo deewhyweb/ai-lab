@@ -49,8 +49,8 @@
 
   - name: Run Application
     containers.podman.podman_container:
-      name: summarizer
-      image: ghcr.io/containers/summarizer:latest
+      name: sentiment
+      image: ghcr.io/containers/sentiment:latest
       state: started
       interactive: true
       tty: true

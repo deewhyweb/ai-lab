@@ -1,7 +1,7 @@
 # Example: an AI powered sample application is embedded as a systemd service
 # via Podman quadlet files in /usr/share/containers/systemd
 #
-# from recipes/natural_language_processing/summarizer, run
+# from recipes/natural_language_processing/sentiment, run
 # 'make bootc'
 
 FROM quay.io/centos-bootc/centos-bootc:stream9
@@ -13,7 +13,7 @@ RUN set -eu; mkdir -p /usr/ssh && \
     echo 'AuthorizedKeysFile /usr/ssh/%u.keys .ssh/authorized_keys .ssh/authorized_keys2' >> /etc/ssh/sshd_config.d/30-auth-system.conf && \
     echo ${SSHPUBKEY} > /usr/ssh/root.keys && chmod 0600 /usr/ssh/root.keys
 
-ARG RECIPE=summarizer
+ARG RECIPE=sentiment
 ARG MODEL_IMAGE=quay.io/ai-lab/granite-7b-lab:latest
 ARG APP_IMAGE=quay.io/ai-lab/${RECIPE}:latest
 ARG SERVER_IMAGE=quay.io/ai-lab/llamacpp_python:latest

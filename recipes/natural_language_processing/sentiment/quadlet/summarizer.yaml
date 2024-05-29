@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    app: summarizer
-  name: summarizer
+    app: sentiment
+  name: sentiment
 spec:
   initContainers:
   - name: model-file
@@ -17,7 +17,7 @@ spec:
     - name: MODEL_ENDPOINT
       value: http://0.0.0.0:8001
     image: APP_IMAGE
-    name: summarizer-inference
+    name: sentiment-inference
     ports:
     - containerPort: 8501
       hostPort: 8501
@@ -31,7 +31,7 @@ spec:
     - name: MODEL_PATH
       value: /model/model.file
     image: SERVER_IMAGE
-    name: summarizer-model-service
+    name: sentiment-model-service
     ports:
     - containerPort: 8001
       hostPort: 8001
