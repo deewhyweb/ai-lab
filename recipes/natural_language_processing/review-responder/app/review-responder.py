@@ -39,9 +39,6 @@ st.title("Bob's Fried Chicken Restaurant")
 
 text = st.text_input("Please enter your restaurant review",value="")
 
-
-
-
 llm = ChatOpenAI(base_url=model_service,
              api_key="not required",
              streaming=True,
@@ -58,11 +55,8 @@ refine_template = PromptTemplate.from_template(
     "Generate and print a response as if you are a person called Bob Hughes the owner of a restaurant called Bob's fried Chicken restaurant responding to this text as a review of their restaurant"
 )
 
-
 if text:
- 
     answer = ""
-    
     st.write(f"We are reading your review, please wait for a response.")
     response = llm.invoke(refine_template.format(text=text,answer=answer))
     answer = response.content
